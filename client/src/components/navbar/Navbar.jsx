@@ -26,8 +26,8 @@ const iconsList = {
 		{ id: "messages", label: "Messages", icon: <ChatRounded /> },
 	],
 	right: [
-		{ id: "theme", label: "Profile", icon: <AccountBoxRounded /> },
-		{ id: "theme", label: "Notifications", icon: <NotificationsRounded /> },
+		{ id: "profile", label: "Profile", icon: <AccountBoxRounded /> },
+		{ id: "notifications", label: "Notifications", icon: <NotificationsRounded /> },
 	],
 };
 
