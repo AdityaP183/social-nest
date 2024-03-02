@@ -19,7 +19,7 @@ export default function SuggestionBox({name, avatar, listItemColor}) {
 					Dismiss
 				</Button>
 				<Button variant="contained" color="success" size="small">
-					Accept
+					Follow
 				</Button>
 			</Box>
 		</ListItem>

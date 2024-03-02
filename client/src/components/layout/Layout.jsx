@@ -6,19 +6,29 @@ import { Outlet } from "react-router-dom";
 import RightBar from "../rightBar/RightBar";
 
 export default function Layout() {
-    const theme = useTheme()
+	const theme = useTheme();
 	return (
-		<Box sx={{
-            width: "100%",
-            height: "100%",
-            background: theme.palette.background[950]
-        }}>
+		<Box
+			sx={{
+				width: "100%",
+				height: "100%",
+				background: theme.palette.background[950],
+			}}
+		>
 			<Navbar />
 			<div style={{ display: "flex" }}>
 				<LeftBar />
-				<div style={{ flex: 6 }}>
+				<Box
+					className="noScrollBar"
+					style={{
+						flex: 6,
+						width: "100%",
+						height: "calc(100vh - 50px)",
+						overflow: "auto",
+					}}
+				>
 					<Outlet />
-				</div>
+				</Box>
 				<RightBar />
 			</div>
 		</Box>
