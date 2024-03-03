@@ -5,6 +5,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/auth/register/Register";
 import Layout from "./components/layout/Layout";
 import { Box } from "@mui/material";
+import Testing from "./Testing";
 
 export default function App() {
 	const router = createBrowserRouter([
@@ -29,6 +30,10 @@ export default function App() {
 		{
 			path: "/register",
 			element: <Register />,
+		},
+		{
+			path: "/testing",
+			element: <Testing />,
 		},
 	]);
 	return (

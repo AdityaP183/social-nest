@@ -1,6 +1,6 @@
 import {
-    BookmarkRounded,
-    CollectionsRounded,
+	BookmarkRounded,
+	CollectionsRounded,
 	Diversity1Rounded,
 	EmojiEventsRounded,
 	FavoriteRounded,
@@ -10,7 +10,7 @@ import {
 	SportsEsportsRounded,
 	StorefrontRounded,
 	TimerRounded,
-    VideocamRounded,
+	VideocamRounded,
 } from "@mui/icons-material";
 import {
 	Box,
@@ -37,51 +37,55 @@ const quickLinksList = {
 		{ id: "memories", label: "Memories", icon: <TimerRounded /> },
 	],
 	shortcuts: [
-        { id: "events", label: "Events", icon: <EmojiEventsRounded /> },
-        { id: "gaming", label: "Gaming", icon: <SportsEsportsRounded /> },
-        { id: "gallery", label: "Gallery", icon: <CollectionsRounded /> },
-        { id: "videos", label: "Videos", icon: <VideocamRounded /> },
-    ],
+		{ id: "events", label: "Events", icon: <EmojiEventsRounded /> },
+		{ id: "gaming", label: "Gaming", icon: <SportsEsportsRounded /> },
+		{ id: "gallery", label: "Gallery", icon: <CollectionsRounded /> },
+		{ id: "videos", label: "Videos", icon: <VideocamRounded /> },
+	],
 	others: [
-        { id: "favourites", label: "Favourites", icon: <FavoriteRounded /> },
-        { id: "bookmarks", label: "Bookmarks", icon: <BookmarkRounded /> },
-        { id: "pages", label: "Pages", icon: <FlagRounded /> },
-        
-    ],
+		{ id: "favourites", label: "Favourites", icon: <FavoriteRounded /> },
+		{ id: "bookmarks", label: "Bookmarks", icon: <BookmarkRounded /> },
+		{ id: "pages", label: "Pages", icon: <FlagRounded /> },
+	],
 };
 
 export default function LeftBar() {
 	const theme = useTheme();
+
+	const CustomListItem = ({ link }) => {
+		return (
+			<ListItem
+				sx={{
+					color: theme.palette.text[100],
+					"&:hover": {
+						bgcolor: theme.palette.background[800],
+					},
+					padding: "10px",
+				}}
+				key={link.id}
+			>
+				<ListItemButton sx={{ padding: "0 10px", fontWeight: 700 }}>
+					<ListItemIcon sx={{ color: theme.palette.primary[400] }}>
+						{link.icon}
+					</ListItemIcon>
+					<ListItemText primary={link.label} />
+				</ListItemButton>
+			</ListItem>
+		);
+	};
+
 	return (
 		<Box
 			sx={{
 				flex: 2,
 				height: "calc(100vh - 50px)",
-                background: theme.palette.background[900],
+				background: theme.palette.background[900],
 				borderRight: `2px solid ${theme.palette.background[700]}`,
 			}}
 		>
 			<List className="leftSidebar_basic">
 				{quickLinksList.basic.map((link) => (
-					<ListItem
-						sx={{
-							color: theme.palette.text[100],
-							"&:hover": {
-								bgcolor: theme.palette.background[700],
-							},
-							padding: "10px",
-						}}
-						key={link.id}
-					>
-						<ListItemButton sx={{ padding: "0 10px" }}>
-							<ListItemIcon
-								sx={{ color: theme.palette.text[100] }}
-							>
-								{link.icon}
-							</ListItemIcon>
-							<ListItemText primary={link.label} />
-						</ListItemButton>
-					</ListItem>
+					<CustomListItem link={link} />
 				))}
 			</List>
 
@@ -92,70 +96,52 @@ export default function LeftBar() {
 				}}
 			/>
 
-			<List className="leftSidebar_shortcuts"
+			<List
+				className="leftSidebar_shortcuts"
 				subheader={
-					<ListSubheader component="div" id="your-shortcuts" sx={{background: "transparent", color: theme.palette.text[100], paddingBottom: 0}}>
+					<ListSubheader
+						component="div"
+						id="your-shortcuts"
+						sx={{
+							background: "transparent",
+							color: theme.palette.text[100],
+							paddingBottom: 0,
+						}}
+					>
 						Your Shortcuts
 					</ListSubheader>
 				}
 			>
 				{quickLinksList.shortcuts.map((link) => (
-					<ListItem
-						sx={{
-							color: theme.palette.text[100],
-							"&:hover": {
-								bgcolor: theme.palette.background[700],
-							},
-							padding: "10px",
-						}}
-						key={link.id}
-					>
-						<ListItemButton sx={{ padding: "0 10px" }}>
-							<ListItemIcon
-								sx={{ color: theme.palette.text[100] }}
-							>
-								{link.icon}
-							</ListItemIcon>
-							<ListItemText primary={link.label} />
-						</ListItemButton>
-					</ListItem>
+					<CustomListItem link={link} />
 				))}
 			</List>
 
-            <Divider
+			<Divider
 				sx={{
 					border: "1px solid",
-					borderColor: theme.palette.background[700],
+					borderColor: "gray",
 				}}
 			/>
 
-			<List className="leftSidebar_others"
+			<List
+				className="leftSidebar_others"
 				subheader={
-					<ListSubheader component="div" id="your-others" sx={{background: "transparent", color: theme.palette.text[100], paddingBottom: 0}}>
+					<ListSubheader
+						component="div"
+						id="your-others"
+						sx={{
+							background: "transparent",
+							color: theme.palette.text[100],
+							paddingBottom: 0,
+						}}
+					>
 						Others
 					</ListSubheader>
 				}
 			>
 				{quickLinksList.others.map((link) => (
-					<ListItem
-						sx={{
-							color: theme.palette.text[100],
-							"&:hover": {
-								bgcolor: theme.palette.background[700],
-							},
-							padding: "10px",
-						}}
-						key={link.id}
-					>
-						<ListItemButton sx={{ padding: "0 10px" }}>
-							<ListItemIcon
-								sx={{ color: theme.palette.text[100] }}
-							>
-								{link.icon}
-							</ListItemIcon>
-							<ListItemText primary={link.label} />
-						</ListItemButton>
-					</ListItem>
+					<CustomListItem link={link} />
 				))}
 			</List>
 		</Box>

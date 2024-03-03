@@ -32,7 +32,7 @@ export default function Post({ post }) {
 				backgroundColor: theme.palette.background[800],
 				padding: "10px",
 				borderRadius: "10px",
-				boxShadow: `0 0 5px ${theme.palette.background[800]}`,
+				// boxShadow: `0 0 5px ${theme.palette.background[800]}`,
 				gap: "5px",
 				marginY: 3,
 			}}

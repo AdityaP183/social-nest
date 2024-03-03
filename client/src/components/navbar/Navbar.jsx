@@ -58,7 +58,7 @@ export default function Navbar() {
 					<Typography
 						variant="h6"
 						fontWeight={900}
-						sx={{ color: theme.palette.text[50], mr: 3 }}
+						sx={{ color: theme.palette.primary[500], mr: 3 }}
 					>
 						Social Nest
 					</Typography>
@@ -94,7 +94,7 @@ export default function Navbar() {
 					>
 						<SearchRounded />
 					</IconButton>
-					
+
 					<InputBase
 						placeholder="Search people..."
 						fullWidth
@@ -125,11 +125,13 @@ export default function Navbar() {
 					</Tooltip>
 				))}
 				<Chip
-					avatar={<Avatar alt="Natacha" src="/profile.png" />}
-					label="Snowball"
+					avatar={<Avatar alt="userimg" src="/profile.png" />}
+					label="Artic Snowman"
 					variant="outlined"
 					sx={{
-						color: theme.palette.text[200],
+						bgcolor: theme.palette.background[700],
+						color: theme.palette.text[100],
+						borderColor: theme.palette.background[400],
 					}}
 				/>
 			</Box>

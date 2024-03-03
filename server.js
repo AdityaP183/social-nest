@@ -15,11 +15,15 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(cookieParser());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/post", postsRoutes);
-app.use("/api/likes", likesRoutes);
-app.use("/api/comments", commentsRoutes);
+const api_name = "flockify";
+app.get("/flockify", (req, res) => {
+	res.status(200).json({ message: "Welcome to Flockify Api!" });
+});
+app.use(`/${api_name}/auth`, authRoutes);
+app.use(`/${api_name}/users`, userRoutes);
+app.use(`/${api_name}/posts`, postsRoutes);
+app.use(`/${api_name}/likes`, likesRoutes);
+app.use(`/${api_name}/comments`, commentsRoutes);
 
 app.listen(8000, () => {
 	console.log(`Server is running!`);

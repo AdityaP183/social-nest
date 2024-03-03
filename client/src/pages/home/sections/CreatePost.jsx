@@ -22,7 +22,6 @@ export default function CreatePost() {
 				backgroundColor: theme.palette.background[800],
 				padding: "10px",
 				borderRadius: "10px",
-				boxShadow: `0 0 5px ${theme.palette.background[800]}`,
 				gap: "15px",
 			}}
 		>
@@ -47,7 +46,7 @@ export default function CreatePost() {
 				sx={{ borderColor: theme.palette.grey[800] }}
 			/>
 
-			<Stack direction="row" justifyContent="space-between">
+			<Stack direction="row" justifyContent="space-between" ml={"10px"}>
 				<Stack direction="row" spacing="5px">
 					<ButtonGroup
 						variant="text"
@@ -66,15 +65,22 @@ export default function CreatePost() {
 						>
 							Add Place
 						</Button>
-						<Button
-							color="inherit"
-							startIcon={<TagRounded />}
-						>
+						<Button color="inherit" startIcon={<TagRounded />}>
 							Tag Friends
 						</Button>
 					</ButtonGroup>
 				</Stack>
-				<Button variant="contained" color="primary">
+				<Button
+					variant="contained"
+					sx={{
+						background: theme.palette.primary[400],
+						color: theme.palette.text[950],
+						fontWeight: 700,
+						"&:hover": {
+							background: theme.palette.primary[600],
+						},
+					}}
+				>
 					Post
 				</Button>
 			</Stack>
