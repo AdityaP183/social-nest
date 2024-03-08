@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { ThemeProvider } from "@mui/material/styles";
 import "./index.css";
-import { customTheme } from "./utils/theme.js";
+import { DarkModeContextProvider } from "./context/darkModeContext";
+
+// const {darkMode} = use
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<ThemeProvider theme={customTheme}>
+		<DarkModeContextProvider>
 			<App />
-		</ThemeProvider>
+		</DarkModeContextProvider>
 	</React.StrictMode>
 );

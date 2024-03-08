@@ -15,31 +15,40 @@ import {
 	ChatRounded,
 	DarkModeRounded,
 	HomeRounded,
+	LightModeRounded,
 	NotificationsRounded,
 	SearchRounded,
 } from "@mui/icons-material";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkModeContext";
 
 const iconsList = {
 	left: [
 		{ id: "home", label: "Home", icon: <HomeRounded /> },
-		{ id: "theme", label: "Change Theme", icon: <DarkModeRounded /> },
 		{ id: "messages", label: "Messages", icon: <ChatRounded /> },
 	],
 	right: [
 		{ id: "profile", label: "Profile", icon: <AccountBoxRounded /> },
-		{ id: "notifications", label: "Notifications", icon: <NotificationsRounded /> },
+		{
+			id: "notifications",
+			label: "Notifications",
+			icon: <NotificationsRounded />,
+		},
 	],
 };
 
 export default function Navbar() {
 	const theme = useTheme();
+	const { darkMode, toggleTheme } = useContext(DarkModeContext);
 	return (
 		<AppBar
 			position="sticky"
 			sx={{
 				height: "50px",
 				padding: "5px 20px",
-				background: theme.palette.background[900],
+				background: darkMode
+					? theme.palette.background[900]
+					: theme.palette.background[800],
 				borderBottom: `1px solid ${theme.palette.background[700]}`,
 				display: "flex",
 				justifyContent: "space-between",
@@ -58,12 +67,27 @@ export default function Navbar() {
 					<Typography
 						variant="h6"
 						fontWeight={900}
-						sx={{ color: theme.palette.primary[500], mr: 3 }}
+						sx={{
+							color: darkMode
+								? theme.palette.primary[500]
+								: theme.palette.primary[400],
+							mr: 3,
+						}}
 					>
 						Social Nest
 					</Typography>
 				</Link>
 
+				<Tooltip title="Toggle Theme">
+					<IconButton
+						sx={{
+							color: theme.palette.text[200],
+						}}
+						onClick={toggleTheme}
+					>
+						{darkMode ? <DarkModeRounded /> : <LightModeRounded />}
+					</IconButton>
+				</Tooltip>
 				{iconsList.left.map((i) => (
 					<Tooltip title={i.label} key={i.id}>
 						<IconButton
@@ -82,14 +106,18 @@ export default function Navbar() {
 						height: "30px",
 						display: "flex",
 						alignItems: "center",
-						background: theme.palette.background[800],
+						background: darkMode
+							? theme.palette.background[800]
+							: theme.palette.background[200],
 						paddingY: 2,
 						borderRadius: "5px",
 					}}
 				>
 					<IconButton
 						sx={{
-							color: theme.palette.text[200],
+							color: darkMode
+								? theme.palette.text[200]
+								: theme.palette.text[800],
 						}}
 					>
 						<SearchRounded />
@@ -100,7 +128,9 @@ export default function Navbar() {
 						fullWidth
 						sx={{
 							fontSize: "14px",
-							color: theme.palette.text[200],
+							color: darkMode
+								? theme.palette.text[200]
+								: theme.palette.text[800],
 						}}
 					/>
 				</Box>

@@ -6,8 +6,13 @@ import Register from "./pages/auth/register/Register";
 import Layout from "./components/layout/Layout";
 import { Box } from "@mui/material";
 import Testing from "./Testing";
+import { ThemeProvider } from "@mui/material/styles";
+import { lightTheme, darkTheme } from "./utils/theme.js";
+import { useContext } from "react";
+import { DarkModeContext } from "./context/darkModeContext.jsx";
 
 export default function App() {
+	const { darkMode } = useContext(DarkModeContext);
 	const router = createBrowserRouter([
 		{
 			path: "/",
@@ -43,7 +48,9 @@ export default function App() {
 				height: "100vh",
 			}}
 		>
-			<RouterProvider router={router} />
+			<ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+				<RouterProvider router={router} />
+			</ThemeProvider>
 		</Box>
 	);
 }
