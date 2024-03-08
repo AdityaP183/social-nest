@@ -17,11 +17,14 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import CommentPopUp from "../commentPopUp/CommentPopUp";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkModeContext";
 
 export default function Post({ post }) {
 	const theme = useTheme();
+	const { darkMode } = useContext(DarkModeContext);
 
-    const [isCommenting, setIsCommenting] = useState(false)
+	const [isCommenting, setIsCommenting] = useState(false);
 
 	return (
 		<Box
@@ -29,10 +32,11 @@ export default function Post({ post }) {
 				width: "100%",
 				display: "flex",
 				flexDirection: "column",
-				backgroundColor: theme.palette.background[800],
+				backgroundColor: darkMode
+					? theme.palette.background[800]
+					: theme.palette.background[700],
 				padding: "10px",
 				borderRadius: "10px",
-				// boxShadow: `0 0 5px ${theme.palette.background[800]}`,
 				gap: "5px",
 				marginY: 3,
 			}}
@@ -59,7 +63,7 @@ export default function Post({ post }) {
 						<Typography
 							variant="caption"
 							lineHeight={1}
-							sx={{ opacity: 0.6 }}
+							sx={{ opacity: 0.8 }}
 						>
 							{post.createdAt}
 						</Typography>
@@ -119,7 +123,10 @@ export default function Post({ post }) {
 					alignItems="center"
 					sx={{ color: theme.palette.text[100] }}
 				>
-					<IconButton sx={{ color: theme.palette.text[100] }} onClick={() => setIsCommenting(true)}>
+					<IconButton
+						sx={{ color: theme.palette.text[100] }}
+						onClick={() => setIsCommenting(true)}
+					>
 						<CommentRounded color="inherit" />
 					</IconButton>
 					<Typography variant="body2">
@@ -139,7 +146,11 @@ export default function Post({ post }) {
 				</Stack>
 			</Stack>
 
-            <CommentPopUp open={isCommenting} setOpen={setIsCommenting}/>
+			<CommentPopUp
+				open={isCommenting}
+				setOpen={setIsCommenting}
+				mode={darkMode}
+			/>
 		</Box>
 	);
 }

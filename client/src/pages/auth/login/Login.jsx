@@ -1,13 +1,18 @@
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
+import { DarkModeContext } from "../../../context/darkModeContext";
+import { useContext, useState } from "react";
 
 export default function Login() {
 	const theme = useTheme();
+	const { darkMode } = useContext(DarkModeContext);
 
 	const cardStyle = {
 		width: "50%",
 		minHeight: "600px",
-		background: theme.palette.background[800],
+		background: darkMode
+			? theme.palette.background[800]
+			: theme.palette.background[700],
 		display: "flex",
 		overflow: "hidden",
 		borderRadius: "10px",
@@ -22,7 +27,7 @@ export default function Login() {
 		flexDirection: "column",
 		justifyContent: "space-between",
 		gap: "30px",
-		color: theme.palette.text[50],
+		color: darkMode ? theme.palette.text[50] : theme.palette.text[900],
 	};
 	const cardRightStyle = {
 		flex: 1,
@@ -34,12 +39,27 @@ export default function Login() {
 		color: theme.palette.text[50],
 	};
 
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	const handleFormSubmit = () => {
+		setIsSubmitting(true);
+
+		console.log({
+			emai: email,
+			password: password,
+		});
+	};
+
 	return (
 		<Box
 			sx={{
 				width: "100%",
 				height: "100%",
-				background: theme.palette.background[950],
+				background: darkMode
+					? theme.palette.background[950]
+					: theme.palette.background[900],
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
@@ -83,19 +103,32 @@ export default function Login() {
 					<Typography variant="h3" fontWeight={800}>
 						Log In
 					</Typography>
-					<TextField variant="outlined" label="username" />
+					<TextField
+						variant="outlined"
+						label="email"
+						type="email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
 					<TextField
 						variant="outlined"
 						label="password"
 						type="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<Button
+						onClick={handleFormSubmit}
 						variant="outlined"
 						sx={{
-							borderColor: theme.palette.background[200],
-							color: theme.palette.background[200],
+							borderColor: darkMode
+								? theme.palette.primary[200]
+								: theme.palette.primary[300],
+							color: darkMode
+								? theme.palette.primary[200]
+								: theme.palette.primary[300],
 							"&:hover": {
-								borderColor: theme.palette.background[300],
+								borderColor: theme.palette.primary[500],
 							},
 							width: "50%",
 							marginX: "auto",

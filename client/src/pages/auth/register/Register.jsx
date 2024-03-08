@@ -1,13 +1,18 @@
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { DarkModeContext } from "../../../context/darkModeContext";
 
 export default function Register() {
 	const theme = useTheme();
+	const { darkMode } = useContext(DarkModeContext);
 
 	const cardStyle = {
 		width: "50%",
 		minHeight: "600px",
-		background: theme.palette.background[800],
+		background: darkMode
+			? theme.palette.background[800]
+			: theme.palette.background[600],
 		display: "flex",
 		flexDirection: "row-reverse",
 		overflow: "hidden",
@@ -23,7 +28,7 @@ export default function Register() {
 		flexDirection: "column",
 		justifyContent: "space-between",
 		gap: "30px",
-		color: theme.palette.text[50],
+		color: darkMode ? theme.palette.text[50] : theme.palette.text[900],
 	};
 	const cardRightStyle = {
 		flex: 1,
@@ -40,7 +45,9 @@ export default function Register() {
 			sx={{
 				width: "100%",
 				height: "100%",
-				background: theme.palette.background[950],
+				background: darkMode
+					? theme.palette.background[950]
+					: theme.palette.background[900],
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
@@ -84,22 +91,31 @@ export default function Register() {
 					<Typography variant="h3" fontWeight={800}>
 						Register
 					</Typography>
-					<TextField variant="outlined" label="name" required/>
-					<TextField variant="outlined" label="username" required/>
-					<TextField variant="outlined" label="email" type="email" required/>
+					<TextField variant="outlined" label="name" required />
+					<TextField variant="outlined" label="username" required />
+					<TextField
+						variant="outlined"
+						label="email"
+						type="email"
+						required
+					/>
 					<TextField
 						variant="outlined"
 						label="password"
 						type="password"
-                        required
+						required
 					/>
 					<Button
 						variant="outlined"
 						sx={{
-							borderColor: theme.palette.background[200],
-							color: theme.palette.background[200],
+							borderColor: darkMode
+								? theme.palette.primary[200]
+								: theme.palette.primary[300],
+							color: darkMode
+								? theme.palette.primary[200]
+								: theme.palette.primary[300],
 							"&:hover": {
-								borderColor: theme.palette.background[300],
+								borderColor: theme.palette.primary[500],
 							},
 							width: "50%",
 							marginX: "auto",

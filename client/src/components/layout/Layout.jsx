@@ -5,19 +5,21 @@ import LeftBar from "../leftBar/LeftBar";
 import { Outlet } from "react-router-dom";
 import RightBar from "../rightBar/RightBar";
 
-export default function Layout() {
+export default function Layout({ mode }) {
 	const theme = useTheme();
 	return (
 		<Box
 			sx={{
 				width: "100%",
 				height: "100%",
-				background: theme.palette.background[950],
+				background: mode
+					? theme.palette.background[950]
+					: theme.palette.background[900],
 			}}
 		>
 			<Navbar />
 			<div style={{ display: "flex" }}>
-				<LeftBar />
+				<LeftBar mode={mode} />
 				<Box
 					className="noScrollBar"
 					style={{
@@ -29,7 +31,7 @@ export default function Layout() {
 				>
 					<Outlet />
 				</Box>
-				<RightBar />
+				<RightBar mode={mode} />
 			</div>
 		</Box>
 	);

@@ -9,8 +9,11 @@ import {
 	Stack,
 	useTheme,
 } from "@mui/material";
+import { useContext } from "react";
+import { DarkModeContext } from "../../../context/darkModeContext";
 
 export default function CreatePost() {
+	const { darkMode } = useContext(DarkModeContext);
 	const theme = useTheme();
 	return (
 		<Box
@@ -19,9 +22,14 @@ export default function CreatePost() {
 				height: "150px",
 				display: "flex",
 				flexDirection: "column",
-				backgroundColor: theme.palette.background[800],
+				backgroundColor: darkMode
+					? theme.palette.background[800]
+					: theme.palette.background[800],
 				padding: "10px",
 				borderRadius: "10px",
+				border: `2px solid ${
+					darkMode ? theme.palette.grey[600] : theme.palette.grey[900]
+				}`,
 				gap: "15px",
 			}}
 		>
@@ -37,7 +45,15 @@ export default function CreatePost() {
 				<InputBase
 					fullWidth
 					placeholder="What's on your mind, Snowman?"
-					sx={{ fontSize: "15px", color: theme.palette.text[100] }}
+					sx={{
+						fontSize: "15px",
+						color: theme.palette.text[100],
+					}}
+					inputProps={{
+						style: {
+							color: theme.palette.text[100],
+						},
+					}}
 				/>
 			</Box>
 

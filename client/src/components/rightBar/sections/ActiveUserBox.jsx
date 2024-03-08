@@ -49,7 +49,9 @@ export default function ActiveUserBox({ listItemColor, avatar, name }) {
 				</StyledBadge>
 			</ListItemAvatar>
 			<ListItemText
-				sx={{ textTransform: "capitalize", fontWeight: "bold" }}
+				sx={{
+					textTransform: "capitalize",
+				}}
 			>
 				{name}
 			</ListItemText>

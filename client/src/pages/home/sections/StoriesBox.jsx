@@ -1,6 +1,7 @@
 import { AddCircleRounded } from "@mui/icons-material";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
-import React from "react";
+import { useContext } from "react";
+import { DarkModeContext } from "../../../context/darkModeContext";
 
 const stories = [
 	{
@@ -27,20 +28,21 @@ const stories = [
 
 export default function StoriesBox() {
 	const theme = useTheme();
+	const { darkMode } = useContext(DarkModeContext);
 	return (
 		<Box
 			sx={{
 				display: "flex",
 				gap: "10px",
 				height: "250px",
-                marginTop: "10px",
+				marginTop: "10px",
 				marginBottom: "30px",
 			}}
 		>
 			<Box
 				className="add_new_story"
 				sx={{
-                    flex: 1,
+					flex: 1,
 					borderRadius: "10px",
 					overflow: "hidden",
 					position: "relative",
@@ -60,7 +62,9 @@ export default function StoriesBox() {
 						position: "absolute",
 						bottom: 1,
 						left: 0,
-						color: theme.palette.primary[700],
+						color: darkMode
+							? theme.palette.primary[700]
+							: theme.palette.primary[400],
 					}}
 				>
 					<AddCircleRounded fontSize="large" />
@@ -92,10 +96,11 @@ export default function StoriesBox() {
 							position: "absolute",
 							bottom: 0,
 							left: 0,
-                            right: 0,
-							color: theme.palette.text[100],
-                            // background: theme.palette.grey[900],
-                            padding: '0 0 0 3px '
+							right: 0,
+							color: darkMode
+								? theme.palette.text[100]
+								: theme.palette.text[900],
+							padding: "0 0 0 3px ",
 						}}
 					>
 						{s.label}

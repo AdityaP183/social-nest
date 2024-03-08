@@ -23,6 +23,8 @@ import {
 	ListSubheader,
 	useTheme,
 } from "@mui/material";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkModeContext";
 
 const quickLinksList = {
 	basic: [
@@ -49,7 +51,7 @@ const quickLinksList = {
 	],
 };
 
-export default function LeftBar() {
+export default function LeftBar({ mode }) {
 	const theme = useTheme();
 
 	const CustomListItem = ({ link }) => {
@@ -58,13 +60,21 @@ export default function LeftBar() {
 				sx={{
 					color: theme.palette.text[100],
 					"&:hover": {
-						bgcolor: theme.palette.background[800],
+						bgcolor: mode
+							? theme.palette.background[800]
+							: theme.palette.background[700],
 					},
 					padding: "10px",
 				}}
 				key={link.id}
 			>
-				<ListItemButton sx={{ padding: "0 10px", fontWeight: 700 }}>
+				<ListItemButton
+					sx={{
+						padding: "0 10px",
+						fontWeight: 700,
+						"&:hover": { bgcolor: "transparent" },
+					}}
+				>
 					<ListItemIcon sx={{ color: theme.palette.primary[400] }}>
 						{link.icon}
 					</ListItemIcon>
@@ -79,8 +89,14 @@ export default function LeftBar() {
 			sx={{
 				flex: 2,
 				height: "calc(100vh - 50px)",
-				background: theme.palette.background[900],
-				borderRight: `2px solid ${theme.palette.background[700]}`,
+				background: mode
+					? theme.palette.background[900]
+					: theme.palette.background[800],
+				borderRight: `2px solid ${
+					mode
+						? theme.palette.background[700]
+						: theme.palette.background[500]
+				}`,
 			}}
 		>
 			<List className="leftSidebar_basic">
@@ -92,7 +108,9 @@ export default function LeftBar() {
 			<Divider
 				sx={{
 					border: "1px solid",
-					borderColor: theme.palette.background[700],
+					borderColor: mode
+						? theme.palette.background[700]
+						: theme.palette.background[500],
 				}}
 			/>
 
@@ -106,6 +124,7 @@ export default function LeftBar() {
 							background: "transparent",
 							color: theme.palette.text[100],
 							paddingBottom: 0,
+							fontWeight: 800,
 						}}
 					>
 						Your Shortcuts
@@ -120,7 +139,9 @@ export default function LeftBar() {
 			<Divider
 				sx={{
 					border: "1px solid",
-					borderColor: "gray",
+					borderColor: mode
+						? theme.palette.background[700]
+						: theme.palette.background[500],
 				}}
 			/>
 
@@ -134,6 +155,7 @@ export default function LeftBar() {
 							background: "transparent",
 							color: theme.palette.text[100],
 							paddingBottom: 0,
+							fontWeight: 800,
 						}}
 					>
 						Others

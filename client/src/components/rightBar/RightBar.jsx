@@ -5,14 +5,18 @@ import SuggestionBox from "./sections/SuggestionBox";
 import ActivityBox from "./sections/ActivityBox";
 import ActiveUserBox from "./sections/ActiveUserBox";
 
-export default function RightBar() {
+export default function RightBar({ mode }) {
 	const theme = useTheme();
 	return (
 		<Box
 			sx={{
 				flex: 3,
 				height: "calc(100vh - 50px)",
-				borderLeft: `2px solid ${theme.palette.background[700]}`,
+				borderLeft: `2px solid ${
+					mode
+						? theme.palette.background[700]
+						: theme.palette.background[500]
+				}`,
 				padding: "10px 20px",
 				display: "flex",
 				flexDirection: "column",
@@ -23,7 +27,9 @@ export default function RightBar() {
 				className="suggestions"
 				sx={{
 					width: "100%",
-					background: theme.palette.background[800],
+					background: mode
+						? theme.palette.background[800]
+						: theme.palette.background[700],
 					borderRadius: "10px",
 				}}
 			>
@@ -60,7 +66,9 @@ export default function RightBar() {
 				className="activites"
 				sx={{
 					width: "100%",
-					background: theme.palette.background[800],
+					background: mode
+						? theme.palette.background[800]
+						: theme.palette.background[700],
 					borderRadius: "10px",
 				}}
 			>
@@ -115,7 +123,9 @@ export default function RightBar() {
 				className="active-users"
 				sx={{
 					width: "100%",
-					background: theme.palette.background[800],
+					background: mode
+						? theme.palette.background[800]
+						: theme.palette.background[700],
 					borderRadius: "10px",
 				}}
 			>

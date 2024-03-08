@@ -28,11 +28,17 @@ const iconsList = {
 		{ id: "messages", label: "Messages", icon: <ChatRounded /> },
 	],
 	right: [
-		{ id: "profile", label: "Profile", icon: <AccountBoxRounded /> },
+		{
+			id: "profile",
+			label: "Profile",
+			icon: <AccountBoxRounded />,
+			href: "/profile/1",
+		},
 		{
 			id: "notifications",
 			label: "Notifications",
 			icon: <NotificationsRounded />,
+			href: "/",
 		},
 	],
 };
@@ -146,6 +152,7 @@ export default function Navbar() {
 				{iconsList.right.map((i) => (
 					<Tooltip title={i.label} key={i.id}>
 						<IconButton
+							href={i.href}
 							sx={{
 								color: theme.palette.text[200],
 							}}
@@ -159,9 +166,15 @@ export default function Navbar() {
 					label="Artic Snowman"
 					variant="outlined"
 					sx={{
-						bgcolor: theme.palette.background[700],
-						color: theme.palette.text[100],
-						borderColor: theme.palette.background[400],
+						bgcolor: darkMode
+							? theme.palette.background[700]
+							: theme.palette.background[500],
+						color: darkMode
+							? theme.palette.text[100]
+							: theme.palette.text[900],
+						borderColor: darkMode
+							? theme.palette.background[400]
+							: theme.palette.background[800],
 					}}
 				/>
 			</Box>

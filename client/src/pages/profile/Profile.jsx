@@ -71,6 +71,7 @@ export default function Profile() {
 						right: 0,
 						left: 0,
 						zIndex: 1,
+						borderRadius: "10px",
 					}}
 				></div>
 				<Avatar
@@ -95,6 +96,7 @@ export default function Profile() {
 					background: theme.palette.background[800],
 					marginTop: 1,
 					padding: "50px 30px 10px 30px",
+					border: `2px solid ${theme.palette.background[400]}`,
 					borderRadius: "10px",
 					color: theme.palette.text[100],
 				}}

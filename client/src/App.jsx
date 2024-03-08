@@ -16,7 +16,7 @@ export default function App() {
 	const router = createBrowserRouter([
 		{
 			path: "/",
-			element: <Layout />,
+			element: <Layout mode={darkMode} />,
 			children: [
 				{
 					path: "/",
